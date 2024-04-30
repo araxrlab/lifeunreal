@@ -4,11 +4,13 @@
 #include "PlayerPawn.h"
 #include "Components/BoxComponent.h"
 #include "Components/StaticMeshComponent.h"
+#include "EnhancedInputComponent.h"
+#include "EnhancedInputSubsystems.h"
 #include "Components/ArrowComponent.h"
 #include "Bullet.h"
 #include "Kismet/GameplayStatics.h"
 
-// Sets default values
+
 APlayerPawn::APlayerPawn()
 {
  	// Set this pawn to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
@@ -51,14 +53,27 @@ APlayerPawn::APlayerPawn()
 	boxComp->SetCollisionResponseToChannel(ECC_WorldStatic, ECR_Block);
 }
 
-// Called when the game starts or when spawned
 void APlayerPawn::BeginPlay()
 {
 	Super::BeginPlay();
 	
+	// 현재 플레이어가 소유한 컨트롤러를 가져온다.
+	APlayerController* pc = GetWorld()->GetFirstPlayerController();
+
+	// 만일, 플레이어 컨트롤러 변수에 값이 들어있다면…
+	if (pc != nullptr)
+	{
+		// 플레이어 컨트롤러로부터 입력 서브 시스템 정보를 가져온다.
+		UEnhancedInputLocalPlayerSubsystem* subsys = ULocalPlayer::GetSubsystem<UEnhancedInputLocalPlayerSubsystem>(pc->GetLocalPlayer());
+		
+		if (subsys != nullptr)
+		{
+			// 입력 서브 시스템에 IMC 파일 변수를 연결한다.
+			subsys->AddMappingContext(imc_playerInput, 0);
+		}
+	}
 }
 
-// Called every frame
 void APlayerPawn::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
@@ -78,31 +93,34 @@ void APlayerPawn::Tick(float DeltaTime)
 
 }
 
-// Called to bind functionality to input
 void APlayerPawn::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 
-	// Axis 바인딩 된 값을 함수에 연결한다. 
-	PlayerInputComponent->BindAxis("Horizontal", this, &APlayerPawn::MoveHorizontal);
-	PlayerInputComponent->BindAxis("Vertical", this, &APlayerPawn::MoveVertical);
-
-	// Action 바인딩 된 값을 함수에 연결한다.
-	PlayerInputComponent->BindAction("Fire", IE_Pressed, this, &APlayerPawn::Fire);
+	UEnhancedInputComponent* enhancedInputComponent = Cast<UEnhancedInputComponent>(PlayerInputComponent);
+	if (enhancedInputComponent != nullptr)
+	{
+		enhancedInputComponent->BindAction(ia_horizontal, ETriggerEvent::Triggered,	this, &APlayerPawn::OnInputHorizontal);
+		enhancedInputComponent->BindAction(ia_horizontal, ETriggerEvent::Completed,	this, &APlayerPawn::OnInputHorizontal);
+		enhancedInputComponent->BindAction(ia_vertical, ETriggerEvent::Triggered, this, &APlayerPawn::OnInputVertical);
+		enhancedInputComponent->BindAction(ia_vertical, ETriggerEvent::Completed, this, &APlayerPawn::OnInputVertical);
+		enhancedInputComponent->BindAction(ia_fire, ETriggerEvent::Started, this, &APlayerPawn::Fire);
+	}
 }
 
 // 좌우축 입력 처리 함수
-void APlayerPawn::MoveHorizontal(float value)
+void APlayerPawn::OnInputHorizontal(const FInputActionValue& value)
 {
-	// 사용자의 입력 값(Axis)을 h 변수에 넣는다.
-	h = value;
+	//float hor = value.Get<float>();
+	//UE_LOG(LogTemp, Warning, TEXT(＂Horizontal: % .2f＂), hor);
+	h = value.Get<float>();
 }
 
-// 상하축 입력 처리 함수
-void APlayerPawn::MoveVertical(float value)
+void APlayerPawn::OnInputVertical(const FInputActionValue& value)
 {
-	// 사용자의 입력 값(Axis)을 h 변수에 넣는다.
-	v = value;
+	//float ver = value.Get<float>();
+	//UE_LOG(LogTemp, Warning, TEXT(＂Vertical: % .2f＂), ver);
+	v = value.Get<float>();
 }
 
 // 마우스 왼쪽 버튼 입력 처리 함수
@@ -110,7 +128,7 @@ void APlayerPawn::Fire()
 {
 	// 총알 블루프린트 파일을 firePosition 위치에 생성한다.
 	ABullet* bullet = GetWorld()->SpawnActor<ABullet>(bulletFactory, firePosition->GetComponentLocation(), firePosition->GetComponentRotation());
-
+	
 	// fireSound 변수에 할당된 음원 파일을 실행한다.
 	UGameplayStatics::PlaySound2D(GetWorld(), fireSound);
 }

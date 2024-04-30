@@ -8,10 +8,9 @@
 #include "PlayerPawn.h"
 #include "ShootingGameModeBase.h"
 
-// Sets default values
+
 AEnemyActor::AEnemyActor()
 {
- 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
 	boxComp = CreateDefaultSubobject<UBoxComponent>(TEXT("Box Collider"));
@@ -25,7 +24,6 @@ AEnemyActor::AEnemyActor()
 	boxComp->SetCollisionProfileName(TEXT("Enemy"));
 }
 
-// Called when the game starts or when spawned
 void AEnemyActor::BeginPlay()
 {
 	Super::BeginPlay();
@@ -58,7 +56,6 @@ void AEnemyActor::BeginPlay()
 	boxComp->OnComponentBeginOverlap.AddDynamic(this, &AEnemyActor::OnEnemyOverlap);
 }
 
-// Called every frame
 void AEnemyActor::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);

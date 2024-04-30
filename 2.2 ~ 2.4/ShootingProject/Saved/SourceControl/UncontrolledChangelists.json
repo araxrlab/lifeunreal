@@ -1,0 +1,27 @@
+{
+	"version": 1,
+	"changelists": [
+		{
+			"guid": "00000000000000000000000000000000",
+			"description": "Default Uncontrolled Changelist",
+			"files": [
+				"E:/My_Git/lifeunreal/2.2 ~ 2.4/ShootingProject/Content/StarterContent/Architecture/Floor_400x400.uasset",
+				"E:/My_Git/lifeunreal/2.2 ~ 2.4/ShootingProject/Content/Maps/MainMap.umap",
+				"E:/My_Git/lifeunreal/2.2 ~ 2.4/ShootingProject/Content/Materials/M_Background.uasset",
+				"E:/My_Git/lifeunreal/2.2 ~ 2.4/ShootingProject/Content/Modelings/PlayerModel/UV.uasset",
+				"E:/My_Git/lifeunreal/2.2 ~ 2.4/ShootingProject/Content/Inputs/IA_Horizontal.uasset",
+				"E:/My_Git/lifeunreal/2.2 ~ 2.4/ShootingProject/Content/Inputs/IMC_PlayerInput.uasset",
+				"E:/My_Git/lifeunreal/2.2 ~ 2.4/ShootingProject/Content/Inputs/IA_Vertical.uasset",
+				"E:/My_Git/lifeunreal/2.2 ~ 2.4/ShootingProject/Content/Inputs/IA_Fire.uasset",
+				"E:/My_Git/lifeunreal/2.2 ~ 2.4/ShootingProject/Content/Blueprints/BP_Player.uasset",
+				"E:/My_Git/lifeunreal/2.2 ~ 2.4/ShootingProject/Content/Modelings/EnemyModel/Drone_OcclusionRoughnessMetallic.uasset",
+				"E:/My_Git/lifeunreal/2.2 ~ 2.4/ShootingProject/Content/Modelings/EnemyModel/Drone_Metallic_Smooth.uasset",
+				"E:/My_Git/lifeunreal/2.2 ~ 2.4/ShootingProject/Content/Modelings/EnemyModel/Drone_BaseColor.uasset",
+				"E:/My_Git/lifeunreal/2.2 ~ 2.4/ShootingProject/Content/Modelings/EnemyModel/Drone_Emissive.uasset",
+				"E:/My_Git/lifeunreal/2.2 ~ 2.4/ShootingProject/Content/Modelings/EnemyModel/Drone_Normal.uasset",
+				"E:/My_Git/lifeunreal/2.2 ~ 2.4/ShootingProject/Content/Modelings/EnemyModel/Material__24.uasset",
+				"E:/My_Git/lifeunreal/2.2 ~ 2.4/ShootingProject/Content/Blueprints/BP_CharPlayer.uasset"
+			]
+		}
+	]
+}

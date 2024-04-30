@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Pawn.h"
+#include "InputActionValue.h"
 #include "PlayerPawn.generated.h"
 
 UCLASS()
@@ -12,18 +13,14 @@ class SHOOTINGCPP_API APlayerPawn : public APawn
 	GENERATED_BODY()
 
 public:
-	// Sets default values for this pawn's properties
 	APlayerPawn();
 
 protected:
-	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
 public:	
-	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
-	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
 	// 박스 충돌체 컴포넌트
@@ -33,6 +30,20 @@ public:
 	// 스태틱 메쉬 컴포넌트
 	UPROPERTY(EditAnywhere)
 	class UStaticMeshComponent* meshComp;
+
+	// Input Mapping Context 파일의 포인터 변수
+	UPROPERTY(EditAnywhere)
+	class UInputMappingContext* imc_playerInput;
+	
+	// Input Action 파일의 포인터 변수
+	UPROPERTY(EditAnywhere)
+	class UInputAction* ia_horizontal;
+
+	UPROPERTY(EditAnywhere)
+	class UInputAction* ia_vertical;
+
+	UPROPERTY(EditAnywhere)
+	class UInputAction* ia_fire;
 
 	// 속력 변수
 	UPROPERTY(EditAnywhere)
@@ -55,9 +66,9 @@ private:
 	float h;
 	float v;
 
-	// 사용자 입력 처리 함수
-	void MoveHorizontal(float value);
-	void MoveVertical(float value);
+	// 입력 이벤트 발생 시 실행할 함수
+	void OnInputHorizontal(const struct FInputActionValue& value);
+	void OnInputVertical(const struct FInputActionValue& value);
 	
 	// 총알 발사 입력 처리 함수
 	void Fire();

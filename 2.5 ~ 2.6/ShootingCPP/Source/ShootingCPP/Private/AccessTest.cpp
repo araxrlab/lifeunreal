@@ -4,19 +4,18 @@
 #include "AccessTest.h"
 #include "CodingTestActor.h"
 
-// Sets default values
 AAccessTest::AAccessTest()
 {
- 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
 }
 
-// Called when the game starts or when spawned
 void AAccessTest::BeginPlay()
 {
 	Super::BeginPlay();
-	/*
+	
+	ACodingTestActor* testActor = NewObject<ACodingTestActor>(this);
+	testActor->number1 = -100;
 	number = 200;
 	numPointer = &number;
 	*numPointer = -30;
@@ -28,16 +27,13 @@ void AAccessTest::BeginPlay()
 	{
 		testPointer->number2 = -10;
 	}
-	*/
 
 	// 변수 생성
 	int32 value1 = 5;
 	int32 value2 = 10;
 	int32 sum = 0;
-
 	// AddPrint 함수를 실행한다.
 	AddPrint(value1, value2, &sum);
-
 	// sum 변수의 값을 로그로 출력한다.
 	UE_LOG(LogTemp, Warning, TEXT("%d"), sum);
 }

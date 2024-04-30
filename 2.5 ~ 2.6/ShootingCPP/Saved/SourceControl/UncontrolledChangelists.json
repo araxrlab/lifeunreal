@@ -1,0 +1,21 @@
+{
+	"version": 1,
+	"changelists": [
+		{
+			"guid": "00000000000000000000000000000000",
+			"description": "Default Uncontrolled Changelist",
+			"files": [
+				"E:/My_Git/lifeunreal/2.5 ~ 2.6/ShootingCPP/Content/Inputs/IA_Fire.uasset",
+				"E:/My_Git/lifeunreal/2.5 ~ 2.6/ShootingCPP/Content/Inputs/IA_Horizontal.uasset",
+				"E:/My_Git/lifeunreal/2.5 ~ 2.6/ShootingCPP/Content/Inputs/IA_Vertical.uasset",
+				"E:/My_Git/lifeunreal/2.5 ~ 2.6/ShootingCPP/Content/Inputs/IMC_PlayerInput.uasset",
+				"E:/My_Git/lifeunreal/2.5 ~ 2.6/ShootingCPP/Content/Blueprints/BP_Bullet.uasset",
+				"E:/My_Git/lifeunreal/2.5 ~ 2.6/ShootingCPP/Content/Blueprints/BP_PlayerPawn.uasset",
+				"E:/My_Git/lifeunreal/2.5 ~ 2.6/ShootingCPP/Content/Blueprints/BP_testBullet.uasset",
+				"E:/My_Git/lifeunreal/2.5 ~ 2.6/ShootingCPP/Content/Maps/ShootingMap.umap",
+				"E:/My_Git/lifeunreal/2.5 ~ 2.6/ShootingCPP/Content/Blueprints/BP_EnemyActor.uasset",
+				"E:/My_Git/lifeunreal/2.5 ~ 2.6/ShootingCPP/Content/Blueprints/BP_KillZone.uasset"
+			]
+		}
+	]
+}
